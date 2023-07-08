@@ -3,16 +3,10 @@
     margin: 0;
     font-family:'josefin Sans', sans-serif;
     box-sizing: border-box;
- 
 }
 #maincontent{
     display:none;
 }
-body{
-    background-color: #2B2D42;
-}
-
-
 
  nav{
     position: sticky;

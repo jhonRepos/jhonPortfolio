@@ -66,7 +66,7 @@
 @keyframes slide-in-left{
     0%
     {
-        transform:translateX(-150px);
+        transform:translateX(-40px);
         opacity:0
      }
      100%
@@ -84,13 +84,14 @@
   }
   @keyframes slide-in-right {
     0% {
-      transform: translateX(150px);
+      transform: translateX(40px);
       opacity: 0;
     }
     100% {
       transform: translateX(0);
       opacity: 1;
     }
+
   }
 
 
@@ -108,32 +109,44 @@
       opacity: 1;
     }
   }
+  @keyframes scale-in-center {
+
+
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
 
   .boxskill:nth-child(1).animated{
-    animation:slide-in-right .5s cubic-bezier(.25,.46,.45,.94)   both;
+    animation:scale-in-center .5s cubic-bezier(.25,.46,.45,.94)   both;
   }
   .boxskill:nth-child(2).animated{
-    animation:slide-in-right .5s cubic-bezier(.25,.46,.45,.94) .2s both;
+    animation:scale-in-center .5s cubic-bezier(.25,.46,.45,.94) .2s both;
   }
   .boxskill:nth-child(3).animated{
-    animation:slide-in-right .5s cubic-bezier(.25,.46,.45,.94) .3s  both;
+    animation:scale-in-center .5s cubic-bezier(.25,.46,.45,.94) .3s  both;
   }
   .boxskill:nth-child(4).animated{
-    animation:slide-in-right .5s cubic-bezier(.25,.46,.45,.94) .4s  both;
+    animation:scale-in-center .5s cubic-bezier(.25,.46,.45,.94) .4s  both;
   }
   .boxskill:nth-child(5).animated{
-    animation:slide-in-right .5s cubic-bezier(.25,.46,.45,.94) .5s  both;
+    animation:scale-in-center .5s cubic-bezier(.25,.46,.45,.94) .5s  both;
   }
   .boxskill:nth-child(6).animated{
-    animation:slide-in-right .5s cubic-bezier(.25,.46,.45,.94) .6s  both;
+    animation:scale-in-center .5s cubic-bezier(.25,.46,.45,.94) .6s  both;
   }
   .boxskill:nth-child(7).animated{
-    animation:slide-in-right .5s cubic-bezier(.25,.46,.45,.94) .7s  both;
+    animation:scale-in-center .5s cubic-bezier(.25,.46,.45,.94) .7s  both;
   }
   .boxskill:nth-child(8).animated{
-    animation:slide-in-right .5s cubic-bezier(.25,.46,.45,.94) .8s  both;
+    animation:scale-in-center .5s cubic-bezier(.25,.46,.45,.94) .8s  both;
   }
   .boxskill:nth-child(9).animated{
-    animation:slide-in-right .5s cubic-bezier(.25,.46,.45,.94) .9s  both;
+    animation:scale-in-center .5s cubic-bezier(.25,.46,.45,.94) .9s  both;
   }
 
