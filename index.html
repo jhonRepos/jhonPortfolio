@@ -6,11 +6,23 @@
 	<title>JhonEdward</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/stylemobile.css"> 
-    <link rel="stylesheet" href="./css/aos.css">
- <!-- <link rel="stylesheet" href="./css/fontawesome.css">  -->
+    <link rel="stylesheet" href="./css/animation.css"> 
+
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <body>  
+    <div id="loadinglogo">
+        <h2 class="logo">JE<span>SP</span></h2>
+   </div>
+
+
+   <!-- <div class="loader">
+    <img  src="./img/blackwhite.jpg" alt="Loading" />
+    <div class="loader-text">Loading...</div>
+  </div>
+   -->
+<div id="maincontent" >
+
     <nav> 
         <div class="logoMenu">
            <h2 class="logo">JE<span>SP</span></h2>
@@ -30,7 +42,7 @@
     <section class="hero">   
         <div class="content">
             <h4>Hello,my name is</h4>
-            <h1>Jhon <span>Edward</span></h1>
+            <h1 class="bounce-in-top animation">Jhon <span>Edward</span></h1>
             <h3>I'am a Web Developer</h3>
             <div class="newsletter">
 
@@ -47,7 +59,7 @@
 
             </div>
         </div>
-        <div class="contentimg">
+        <div class="contentimg " >
             <img src="./img/profilepic.png" >
         </div>
         
@@ -55,11 +67,11 @@
     </section>
     <section class="about">
         <div class="main">
-            <img src="./img/blackwhite.jpg" >
-            <div class="about-text" >
+            <img class="slide-in-left animation" src="./img/blackwhite.jpg" >
+            <div class="about-text slide-in-right animation" >
                 <h2>About Me</h2>
                 <h5>FullStack <span>Developer</span></h5>
-                <p>I am result-oriented Full Stack Developer with over 2 years of experience specializing in PHP and the CodeIgniter framework. Skilled in both back-end and front-end development, with a focus on building robust web applications. Proficient in server-side programming, database management, and API integration. Experienced in creating visually appealing and responsive user interfaces using HTML, CSS, and JavaScript. Strong problem-solving abilities and a commitment to delivering clean, efficient code. Dedicated to staying updated with industry trends and best practices. Proven track record of successfully delivering high-quality projects on time. Ready to leverage my PHP expertise to contribute to the success of your organization.</p>
+                <p>Experienced Full Stack Developer with a focus on PHP and the CodeIgniter framework. Skilled in both back-end and front-end development, proficient in server-side programming, database management, and API integration. Strong problem-solving abilities, committed to delivering clean code and meeting deadlines. Updated with industry trends and best practices. Track record of delivering high-quality projects. Ready to contribute PHP expertise to your organization's success.</p>
               - <button class="btn" >lets Talks</button>
             </div>  
         </div>   
@@ -71,7 +83,7 @@
         </div>
         
         <div class="box">
-            <div class="boxskill">
+            <div class="boxskill animation">
                 <div class="skilllogo">
                     <i class="fab fa-php fa-skills"></i>
                 </div>
@@ -81,7 +93,7 @@
                 </div>
             </div>
 
-            <div class="boxskill">
+            <div class="boxskill animation">
                 <div class="skilllogo">
                     <i class="fab fa-js-square fa-skills"></i>
                 </div>
@@ -90,7 +102,7 @@
                     <p>3 Years Exp</p>
                 </div>
             </div>
-            <div class="boxskill">
+            <div class="boxskill animation">
                 <div class="skilllogo">
                     <img src="./img/mysql.png" style="width: 50px; height: 38px;">
                 </div>
@@ -99,7 +111,7 @@
                     <p>3 Years Exp</p>
                 </div>
             </div>
-            <div class="boxskill">
+            <div class="boxskill animation">
                 <div class="skilllogo">
                     <img src="./img/ci.png" style="width: 50px;height: 38px;">
                 </div>
@@ -108,7 +120,7 @@
                     <p>3 Years Exp</p>
                 </div>
             </div>
-            <div class="boxskill">
+            <div class="boxskill animation">
                 <div class="skilllogo">
                     <img src="./img//jquery.png" style="width: 50px;height: 38px;">
                 </div>
@@ -118,7 +130,7 @@
                 </div>
             </div>
 
-            <div class="boxskill">
+            <div class="boxskill animation">
                 <div class="skilllogo">
                     <i class="fab fa-html5 fa-skills" ></i>
                 </div>
@@ -128,7 +140,7 @@
                 </div>
             </div>
 
-            <div class="boxskill">
+            <div class="boxskill animation">
                 <div class="skilllogo">
                     <i class="fab fa-css3-alt fa-skills"></i>
                 </div>
@@ -138,7 +150,7 @@
                 </div>
             </div>
 
-            <div class="boxskill">
+            <div class="boxskill animation">
                 <div class="skilllogo">
                     <i class="fab fa-bootstrap fa-skills"></i>
                 </div>
@@ -148,7 +160,7 @@
                 </div>
             </div>
 
-            <div class="boxskill">
+            <div class="boxskill animation">
                 <div class="skilllogo">
                     <i class="fab fa-github fa-skills"></i>
                 </div>
@@ -175,10 +187,24 @@
       
        <p>Copy Right By Jhon Edward</p>
     </footer> 
-
+</div>
 </body>
 
-<script src="./js/aos.js"></script>
 <script src="./js/script.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    myFunction()
+ function myFunction() {
+ 	 setTimeout(showPage, 500);
+ }
+
+function showPage() {
+    $("#loadinglogo").fadeOut("slow", function() {
+        $("#maincontent").fadeIn("slow");
+        });
+}
+
+  </script>
 
 </html>

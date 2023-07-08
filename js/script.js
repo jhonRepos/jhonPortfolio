@@ -21,7 +21,7 @@ xbtn.addEventListener('click',function(){
 });
 
 
-AOS.init();
+// AOS.init();
 
 
 function scrollToview(select){
@@ -29,3 +29,26 @@ function scrollToview(select){
  var section =document.querySelector('.'+select);
  section.scrollIntoView({behavior:'smooth'});
 }
+
+
+window.addEventListener("scroll", function() {
+    var windowBottom = window.pageYOffset + window.innerHeight;
+    var slideInElements = document.querySelectorAll(".animation");
+    
+    slideInElements.forEach(function(element) {
+      var objectBottom = element.offsetTop + element.offsetHeight;
+      if (objectBottom < windowBottom) {
+        element.classList.add("animated");
+      }
+      else {
+        element.classList.remove("animated");
+        element.classList.add("scale-out-center");
+       
+      }
+    });
+  });
+  window.dispatchEvent(new Event("scroll"));
+
+
+
+  
