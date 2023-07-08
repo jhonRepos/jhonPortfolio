@@ -1,0 +1,105 @@
+@media (max-width:790px) {
+    nav{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 10px;
+        gap: 5px;
+        z-index: 2;
+    }
+    nav ul li{
+        list-style-type:none;
+        display:block;
+        padding: 10px 25px;
+     
+    }
+    .logoMenu{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+       
+    }
+    .logo{
+        font-size: 20px;
+    }
+    #bars{
+        display: block;
+        color: #ffffff;
+    }
+   #selectionmenu ,#clickBtn{
+        display:none;
+    }
+    .btn{
+        padding: 5px 15px; 
+    } 
+ 
+    .content{
+   
+        gap:10px;
+        padding: 15px;
+    } 
+    .contentimg img{
+        width: 50%;
+        height:  50%;
+      }  
+     h1{
+        margin: 20px 0px 20px;
+        font-size: 35px;
+    } *
+    h3{
+        font-size: 15px; 
+        margin-bottom: 25px;
+    }
+    h4{ 
+       letter-spacing: 1px;
+       font-size: 15px;
+    }
+    .newsletter form{
+         width: 230px;
+     }
+     .newsletter form input:first-child{
+        padding: 7px 70px 7px 8px;
+    }
+    .newsletter form input:last-child{
+        padding: 5px 15px;
+        top: 4px;
+        right: 5px;
+    } 
+
+    
+ .main{
+    padding: 50px 25px;
+} 
+ .about img{
+    height: auto;
+    width: 230px;
+    box-shadow: 4px 4px 10px #16425B;
+} 
+ .about-text{
+    height: auto;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+} 
+.about-text h2{
+ font-size: 25px;
+ margin-bottom: 15px;
+} 
+
+ .about-text h5{
+    color: white;
+   letter-spacing: 1px;
+   font-size: 20px;
+   margin-bottom: 15px;
+} 
+   .about-text p{
+
+   line-height: 20px;
+   font-size: 15px;
+   margin-bottom: 30px;
+   } 
+}
