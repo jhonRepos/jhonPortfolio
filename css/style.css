@@ -132,39 +132,72 @@ h4{
    letter-spacing: 2px;
    font-size: 20px;
 }
-.newsletter form{
-   z-index: 1;
-    width: 300px;
-    max-width: 100%;
+
+.download-button {
     position: relative;
-} 
-.newsletter form input:first-child{
-  
-    display: inline-block;
-    width: 100%;
-    padding: 14px 130px 14px 15px;
-    border: 2px solid #EF233C;
-    outline: none;
-    border-radius: 30px;
-    
-}
-.newsletter form input:last-child{
- 
-    position: absolute;
-   display: inline-block;
-   outline: none;
-   border: none;
-   padding: 10px 30px;
-    border-radius: 30px;
-    background-color: #EF233C;
+    border-width: 0;
     color: white;
-    box-shadow: 0px 0px 5px #000, 0px 0px 15px #858585;
-    top: 6px;
-    right: 6px;
-}
-.newsletter form input:last-child:hover{
-    transform: scale(1.2);
-}
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 4px;
+    z-index: 1;
+   }
+   
+   .download-button .docs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 40px;
+    padding: 0 10px;
+    border-radius: 4px;
+    z-index: 1;
+    background-color: #EF233C;
+    border: solid 1px #e8e8e82d;
+    transition: all .5s cubic-bezier(0.77, 0, 0.175, 1);
+   }
+   
+   .download-button:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+   }
+   
+   .download {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 90%;
+    margin: 0 auto;
+    z-index: -1;
+    border-radius: 4px;
+    transform: translateY(0%);
+    background-color: #ffffff;
+    border: solid 1px #01e0572d;
+    transition: all .5s cubic-bezier(0.77, 0, 0.175, 1);
+   }
+   
+   .download-button:hover .download {
+    transform: translateY(100%)
+   }
+   
+   .download svg polyline,.download svg line {
+    animation: docs 1s infinite;
+   }
+   
+   @keyframes docs {
+    0% {
+     transform: translateY(0%);
+    }
+   
+    50% {
+     transform: translateY(-15%);
+    }
+   
+    100% {
+     transform: translateY(0%);
+    }
+   }
 
 /* about me css */
 .main{
@@ -220,52 +253,55 @@ h4{
    } 
    .title h2{
     color: white;
-    font-size: 50px;
+    font-size: 40px;
     width: 100%;
     margin: 20px auto;
     text-align: center;
+    padding-top: 35px;
    }
    .box{
-    width: 100%;
+    width: fit-content;
+    height: fit-content;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     min-height: 400px;
     flex-wrap:wrap;
-  gap: 20px;
-   } 
-    .card{
-    height: 250px;
-    width: 150px;
-    background: #191919;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    box-shadow: 4px 4px 10px #16425B;
-    margin-bottom: 20px;
-   } 
-     .skill-fa {
-    font-size: 75px;
-    color: #EF233C; 
-   }  
-     .card:hover{
-    transform: scale(1.1);
-    border: 2px solid #EF233C; 
-    box-shadow: 4px 4px 10px #EF233C; 
+    gap: 8px;
     } 
-     .pra{
+
+    .boxskill{
+        background-color: #191919;
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
-    } 
+        align-items: center;
+        justify-content: center;
+        padding: 25px 25px;
+        gap: 5px;
+        border-radius: 20px;
+        box-shadow: 4px 4px 10px rgba(250, 245, 245, 0.055);
+       width: 135px;
+    }
+    .boxskill:hover{
+        transform: scale(1.05);
+        border: 2px solid #EF233C; 
+        box-shadow: 4px 4px 10px #EF233C; 
+        } 
+
+    .fa-skills{
+        font-size: 40px;
+        color: #EF233C; 
+        
+    }
+    .boxskill p{
+        color:white;
+        font-size: 15px;
+       } 
     .pra p{
     text-align: center;
     color:white;
     font-size: 13px;
-    line-height: 27px;
-    margin-bottom: 20px;
+       
    } 
 
    /* .cardbtn{
@@ -321,15 +357,13 @@ footer p:nth-child(1){
     margin-bottom: 20px;
     font-weight: bold;
 }
-footer p:nth-child(3){
+footer p:nth-child(2){
     font-size: 17px;
     color: white;
     margin-bottom: 20px;
     text-align: center;
     line-height: 26px;
 }
-.social{
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
+
+
+
