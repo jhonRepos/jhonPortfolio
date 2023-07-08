@@ -1,7 +1,7 @@
 @media (max-width:790px) {
     .hero{
 
-        padding: 40px 0px 100px 0px;
+        padding: 30px 0px 100px 0px;
         /* padding-bottom: 100px; */
      
      }
@@ -47,6 +47,7 @@
         padding: 15px;
     } 
     .contentimg img{
+        padding-top: 50px;
         width: 50%;
         height:  50%;
       }  
