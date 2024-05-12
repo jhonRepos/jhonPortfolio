@@ -1,210 +1,145 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>JhonEdward</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/stylemobile.css"> 
-    <link rel="stylesheet" href="./css/animation.css"> 
-
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-<body>  
-    <div id="loadinglogo">
-        <h2 class="logo">JE<span>SP</span></h2>
-   </div>
-
-
-   <!-- <div class="loader">
-    <img  src="./img/blackwhite.jpg" alt="Loading" />
-    <div class="loader-text">Loading...</div>
-  </div>
-   -->
-<div id="maincontent" >
-
-    <nav> 
-        <div class="logoMenu">
-           <h2 class="logo">JE<span>SP</span></h2>
-           <i class="fas fa-bars" id="bars" ></i>
-           <i class="fas fa-times fa-lg" id="xbtn"></i>
-        </div>
-            <ul id="selectionmenu">
-                <li href="#" onclick="scrollToview('hero')">Home</li>
-                <li href="#" onclick="scrollToview('about')">About</li>
-                <li href="#" onclick="scrollToview('skill')">Skill</li>
-                <li href="#"onclick="scrollToview('contact-me')">Contact me</li>
+    <title>Porfolio</title>
+    <link rel="icon" href="./assets/image/logo-tab.png"  type="image/x-icon">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <header>
+        <nav id="nav-bar">
+            <img  src="./assets/image/logo.png" alt="download"  width="100"/></div> 
+            <ul  class="nav-ul">
+            <a href="#" class="nav"  onclick="scrollToview('hero', event)"><li>Home</li></a>
+            <a href="#" class="nav"   onclick="scrollToview('project', event)"><li>Projects</li></a>
+            <a href="#" class="nav"   onclick="scrollToview('experience', event)"><li>Experience</li></a>
+            <a href="#" class="nav"  onclick="scrollToview('about', event)"><li>About Me</li></a>
             </ul>
-            <div class="btn" id="clickBtn">click me</div>
-       
-    </nav>
-
-    <section class="hero">   
-        <div class="content">
-            <h4>Hello,my name is</h4>
-            <h1 class="bounce-in-top animation">Jhon <span>Edward</span></h1>
-            <h3>I'am a Web Developer</h3>
-            <div class="newsletter">
-
-
-                <button class="download-button">
-                    <div class="docs"><i class="fas fa-file-download fa-lg"></i>    Resume</div>
-                    <a href="./img/Jhon-edward-salvan.pdf" download>
-                        <div class="download">
-                            <i class="fas fa-angle-down fa-lg" style="color: #000000;"></i>
-                        </div>
-                    </a>
-                    
-                  </button>
-
+            <ul id="nav-ul-burger">
+                <div class="burger-menu burger-menu--closed">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+             </ul>
+        </nav>
+        <div id="nav-overlay" class="overlay" >
+            <a href="#" class="closebtn" >&times;</a>
+            <div class="overlay-content">
+                <a href="#"  class="nav1"  onclick="scrollToview('hero', event)"><li>Home</li></a>
+                <a href="#"  class="nav1"  onclick="scrollToview('project', event)"><li>Projects</li></a>
+                <a href="#"  class="nav1"  onclick="scrollToview('experience', event)"><li>Experience</li></a>
+                <a href="#"  class="nav1"  onclick="scrollToview('about', event)"><li>About Me</li></a>
             </div>
         </div>
-        <div class="contentimg " >
-            <img src="./img/profilepic.png" >
-        </div>
-        
-       
+    </header>
+ 
+    <section id="hero">
+    
+        <img src="./assets/image/php.png" id="php">
+        <img src="./assets/image/js.png" id="js">
+        <img src="./assets/image/greater.png" id="greater"  >
+        <img src="./assets/image/css.png" id="css">
+        <img src="./assets/image/brocket.png" id="brocket">    
+        <img src="./assets/image/paren.png" id="paren">
+        <img src="./assets/image/person.png" id="person">
+        <img src="./assets/image/sql.png" id="sql">
+        <h2 id="text"><span>WEB</span> DEVELOPER </h2>
+
     </section>
-    <section class="about">
-        <div class="main">
-            <img class="slide-in-left animation" src="./img/blackwhite.jpg" >
-            <div class="about-text slide-in-right animation" >
-                <h2>About Me</h2>
+    <section id="project" >
+        <div id="project-view" data-current-id="0">
+            <div class="card-picture">
+           
+            </div>
+            <div class="card-content">
+                    <h2 class="system"></h2>
+                    <h4 class="role"></h4>
+                    <div class="objective-container">
+                        <h4>OBJECTIVE</h4>
+                        <ul class="objective-list">
+                            
+                        </ul>
+                    </div>
+                    <div class="tech-stack-container">
+                        <h4>TECH STACK</h4>
+                        <div class="tech-list">
+                        </div>
+                        <button class="btn" onclick="toggleModal()" type="button" id="more-btn">Read more</button>
+                    </div>
+            </div>
+        </div>
+        <div id="project-selection">
+
+        </div>
+
+        <!-- start modal for project details-->
+        <div class="modal-container" onclick="toggleModal()"></div>
+        <div class="modal-window">
+            <div class="card-container">
+             
+                <h2 class="system"></h2>
+                <h4 class="role"></h4>
+                <div class="objective-container">
+                    <h4>OBJECTIVE:</h4>
+                    <ul class="objective-list">
+                        
+                    </ul>
+                </div>
+                <div class="objective-container">
+                    <h4>ROLES AND RESPONSIBILITIES:</h4>
+                    <ul class="responsibilities-list">
+                        
+                    </ul>
+                </div>
+                <div class="tech-stack-container">
+                    <h4>TECH STACK</h4>
+                    <div class="tech-list">
+                    </div>
+                   
+                </div>
+               
+            </div>
+        </div>
+<!-- end modal for project details-->
+
+        
+    </section>
+    <section id="experience" >
+        <div class="timeline">
+            <ul id="parentList">
+
+
+            </ul>
+          </div>
+
+
+    </section>
+
+    <section id="about" >
+        <div class="about-container animated-div">
+            <img class="about-picture" src="./assets/image/blackwhite.jpg" >
+            <div class="about-text " >
+                <h4>About Me</h4>
                 <h5>FullStack <span>Developer</span></h5>
-                <p>Experienced Full Stack Developer with a focus on PHP and the CodeIgniter framework. Skilled in both back-end and front-end development, proficient in server-side programming, database management, and API integration. Strong problem-solving abilities, committed to delivering clean code and meeting deadlines. Updated with industry trends and best practices. Track record of delivering high-quality projects. Ready to contribute PHP expertise to your organization's success.</p>
-              - <button class="btn" >lets Talks</button>
+                <!-- <p>Experienced Full Stack Developer with a focus on PHP and the CodeIgniter framework. Skilled in both back-end and front-end development, proficient in server-side programming, database management, and API integration. Strong problem-solving abilities, committed to delivering clean code and meeting deadlines. Updated with industry trends and best practices. Track record of delivering high-quality projects. Ready to contribute PHP expertise to your organization's success.</p> -->
+             <p>I am an experienced web developer with over three years of expertise, delivering high-impact web solutions for
+              diverse industry organizations. Proficient in designing and developing multiple</p>
+                <a href="./assets/image/Jhon-edward-salvan.pdf" download>
+                    <button class="btn">Lets Talks</button>
+                  </a>
             </div>  
         </div>   
-    </section>
-
-    <section class="skill"> 
-        <div class="title">
-            <h2>Skills</h2>
-        </div>
-        
-        <div class="box">
-            <div class="boxskill animation">
-                <div class="skilllogo">
-                    <i class="fab fa-php fa-skills"></i>
-                </div>
-                <p> PHP</p>
-                <div class="pra">
-                    <p>3 Years Exp</p>
-                </div>
-            </div>
-
-            <div class="boxskill animation">
-                <div class="skilllogo">
-                    <i class="fab fa-js-square fa-skills"></i>
-                </div>
-                <p> JAVASCRIPT</p>
-                <div class="pra">
-                    <p>3 Years Exp</p>
-                </div>
-            </div>
-            <div class="boxskill animation">
-                <div class="skilllogo">
-                    <img src="./img/mysql.png" style="width: 50px; height: 38px;">
-                </div>
-                <p style="color: white;"> MYSQL </p>
-                <div class="pra">
-                    <p>3 Years Exp</p>
-                </div>
-            </div>
-            <div class="boxskill animation">
-                <div class="skilllogo">
-                    <img src="./img/ci.png" style="width: 50px;height: 38px;">
-                </div>
-                <p style="color: white;"> CODEIGNITER </p>
-                <div class="pra">
-                    <p>3 Years Exp</p>
-                </div>
-            </div>
-            <div class="boxskill animation">
-                <div class="skilllogo">
-                    <img src="./img//jquery.png" style="width: 50px;height: 38px;">
-                </div>
-                <p style="color: white;"> JQUERY </p>
-                <div class="pra">
-                    <p>3 Years Exp</p>
-                </div>
-            </div>
-
-            <div class="boxskill animation">
-                <div class="skilllogo">
-                    <i class="fab fa-html5 fa-skills" ></i>
-                </div>
-                <p style="color: white;"> HTML </p>
-                <div class="pra">
-                    <p>3 Years Exp</p>
-                </div>
-            </div>
-
-            <div class="boxskill animation">
-                <div class="skilllogo">
-                    <i class="fab fa-css3-alt fa-skills"></i>
-                </div>
-                <p style="color: white;"> CSS </p>
-                <div class="pra">
-                    <p>3 Years Expsssss</p>
-                </div>
-            </div>
-
-            <div class="boxskill animation">
-                <div class="skilllogo">
-                    <i class="fab fa-bootstrap fa-skills"></i>
-                </div>
-                <p style="color: white;"> BOOTSTRAP </p>
-                <div class="pra">
-                    <p>3 Years Exp</p>
-                </div>
-            </div>
-
-            <div class="boxskill animation">
-                <div class="skilllogo">
-                    <i class="fab fa-github fa-skills"></i>
-                </div>
-                <p style="color: white;"> GIT</p>
-                <div class="pra">
-                    <p>3 Years Exp</p>
-                </div>
-            </div>
-           
-        </div>  
-
 
     </section>
-    <section class="project">
-        
-    </section>
 
-    <section class="contact-me">   
-        <p>Let Me Build You A Beautiful Website.</p>
-      <button class="btn" >Hire Me </button> 
-    </section> 
-    <footer >   
-       <p>Jhon Edward</p>
-      
-       <p>Copy Right By Jhon Edward</p>
-    </footer> 
-</div>
+
 </body>
-
-<script src="./js/script.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-
-    myFunction()
- function myFunction() {
- 	 setTimeout(showPage, 500);
- }
-
-function showPage() {
-    $("#loadinglogo").fadeOut("slow", function() {
-        $("#maincontent").fadeIn("slow");
-        });
-}
-
-  </script>
-
+<script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
+<script src="./assets/js/script.js"></script>
 </html>
