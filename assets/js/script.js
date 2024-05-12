@@ -1,4 +1,12 @@
 
+    
+    setTimeout(function() {
+        var loaderOverlay = document.querySelector('.loader-overlay');
+        loaderOverlay.classList.add('hide-overlay');
+        setTimeout(function() {
+            loaderOverlay.style.display = 'none';
+        }, 900); // Adjust timing as needed
+    }, 1000);
 
 
 function scrollToview(select, event) {
