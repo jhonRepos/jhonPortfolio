@@ -154,7 +154,7 @@ const objectiveList=[
             responsibilities:[
                 "Develop front-end website architecture.",
                 "Design user interaction on web pages.",
-                "Develop back-end website application.",
+                "Integrate gaming providers (Simple Play, SA Gaming, Clot Gaming, Bigpot Gaming, Pragmatic Play, JILI) with a seamless wallet using REST and SOAP APIs.",
                 "Design and implement database structures.",
                 "Optimize database queries for efficiency and performance.",
                 "Configuration of Web Sockets (Ratchet).",
