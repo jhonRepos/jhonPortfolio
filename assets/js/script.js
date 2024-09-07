@@ -82,87 +82,102 @@ const objectiveList=[
         title:'HRIS (Human Resource Information System)',
         role:'Fullstack Developer',
         objective:[
-            "Enhance efficiency and accuracy in HR operations through streamlined data management processes.",
-            "Support organizational growth and scalability by implementing customizable workflows and scalability features within the HRIS platform.",
-            "Employees can easily request overtime, leave, or schedule changes, manage timekeeping, and access their payslips.",
-            "To streamline payroll generation within the HR and payroll management system.",
+            `Enhance efficiency and accuracy in HR operations by 
+            streamlining data management processes, supporting 
+            organizational growth and scalability through customizable 
+            workflows and scalability features within the HRIS platform, 
+            enabling employees to easily request overtime, leave, or schedule 
+            changes, manage timekeeping, access their pay slips, and 
+            streamline payroll generation within the HR and payroll 
+            management system.`
          ],
         responsibilities:[
-            "Develop front-end website architecture.",
-            "Design user interaction on web pages.",
-            "Develop back-end website application.",
-            "Design and implement database structures.",
-            "Optimize database queries for efficiency and performance.",
-            "Define endpoints and data formats for communication between different parts of the application.",
-            "Work alongside graphic designer for web design features.",
-            "Ensure cross-platform optimization."
+            `Develop front-end website architecture.`,
+            `Design user interaction on web pages.`,
+            `Develop back-end website application.`,
+            `Design and implement database structures.`,
+            `Optimize database queries for efficiency and performance.`,
+            `Define endpoints and data formats for communication between different parts of the application.`,
+            `Work alongside graphic designer for web design features.`,
+            `Ensure cross-platform optimization.`
           ],
-        techstack:['Codeigniter','Mysql','Html','Css','Bootstrap4','Jquery'],
+        techstack:['PHP','Javascript','Codeigniter','Mysql','Html','Css','Bootstrap','Jquery'],
     },
     {
         image:'ocbs-laptop.png',
         title:'OCBS/CRM',
         role:'Fullstack Developer',
         objective:[
-            "To track the Kios Application's progress, streamlined with departments (Finance, Sales, Helpdesk, Audit) and third-party companies..",
-            "To monitor inventory for equipment at each kiosk site and in company storage."
+           ` Track the Kios Application's progress by streamlining 
+            operations with departments (Finance, Sales, Helpdesk, Audit) and 
+            third-party companies, monitor inventory for equipment at each 
+            kiosk site and in company storage, and manage the transition from 
+            installation to operation. Additionally, allow kiosk owners to apply 
+            for additional equipment while the system monitors both company 
+            and kiosk owner inventory.`
             ],
         responsibilities:[
-            "Develop front-end website architecture.",
-            "Design user interaction on web pages.",
-            "Develop back-end website application.",
-            "Design and implement database structures.",
-            "Optimize database queries for efficiency and performance.",
-            "Define endpoints and data formats for communication between different parts of the application.",
-            "Work alongside graphic designer for web design features.",
-            "Ensure cross-platform optimization."
+            `Develop front-end website architecture.`,
+            `Design user interaction on web pages.`,
+            `Develop back-end website application.`,
+            `Design and implement database structures.`,
+            `Optimize database queries for efficiency and performance.`,
+            `Define endpoints and data formats for communication between different parts of the application.`,
+            `Work alongside graphic designer for web design features.`,
+            `Ensure cross-platform optimization.`
           ],
-        techstack:['Codeigniter','Mysql','Html','Css','Bootstrap4','Jquery'],
+          techstack:['PHP','Javascript','Codeigniter','Mysql','Html','Css','Bootstrap','Jquery'],
     },
     {
         image:'lt-laptop.png',
         title:'ELOTTO',
         role:'Fullstack Developer',
         objective:[
-        "Provide a user-friendly interface for purchasing lottery tickets online.",
-        "Ensure secure payment processing for ticket purchases.",
-        "Effortless deposit and withdrawal options available via our partnered merchants (Gcash, Paymaya, DragonPay, etc.).",
-        "Provide informative content about each lottery game, including rules, odds, and past winning numbers.",
-        "Regularly audit and review the platform's security measures to protect user data and transactions.",
-      
+        `Provide a user-friendly interface for purchasing lottery 
+            tickets online, ensure secure payment processing, and offer 
+            effortless deposit and withdrawal options through partnered 
+            merchants such as Gcash, Paymaya, and DragonPay. Additionally, 
+            provide informative content about each lottery game, including 
+            rules, odds, and past winning numbers, and regularly audit and 
+            review the platform's security measures to protect user data and 
+            transactions.`
         ],
         responsibilities:[
-            "Develop front-end website architecture.",
-            "Design user interaction on web pages.",
-            "Develop back-end website application.",
-            "Design and implement database structures.",
-            "Optimize database queries for efficiency and performance.",
-            "Configuration of Web Sockets (Ratchet).",
-            "Define endpoints and data formats for communication between different parts of the application.",
-            "Work alongside graphic designer for web design features.",
-            "Ensure cross-platform optimization."
+            `Develop front-end website architecture.`,
+            `Develop a socket for continuous connectivity between the player side and the management side`,
+            `Design user interaction on web pages.`,
+            `Develop back-end website application.`,
+            `Design and implement database structures.`,
+            `Optimize database queries for efficiency and performance.`,
+            `Configuration of Web Sockets (Ratchet).`,
+            `Define endpoints and data formats for communication between different parts of the application.`,
+            `Work alongside graphic designer for web design features.`,
+            `Ensure cross-platform optimization.`
         ],
-        techstack:['Codeigniter','Mysql','Socket(Rachet)','Html','Css','Bootstrap4','Jquery'],
+        techstack:['Codeigniter','Mysql','Socket(Rachet)','Html','Css','Bootstrap','Jquery'],
     },
     {
-        image:'gaming-laptop.png',
+        image:'digi.png',
         title:'OtchoPlay - Gaming Platform',
         role:'Fullstack Developer',
         objective:[
-            "To offer entertainment along with convenient and secure deposit and withdrawal options.",
-            "To expand the variety of game categories and providers, including options like Evo, Cherry Etc."],
-            responsibilities:[
-                "Develop front-end website architecture.",
-                "Design user interaction on web pages.",
-                "Develop back-end website application.",
-                "Design and implement database structures.",
-                "Optimize database queries for efficiency and performance.",
-                "Configuration of Web Sockets (Ratchet).",
-                "Define endpoints and data formats for communication between different parts of the application.",
-                "Work alongside graphic designer for web design features.",
-                "Ensure cross-platform optimization."
+            `Develop a secure and engaging casino platform 
+            offering a wide variety of high-quality games. Focus on delivering a 
+            seamless user experience with robust security features and efficient 
+            transaction processing. Ensure compliance with industry 
+            regulations`
             ],
-            techstack:['Codeigniter','Mysql','Socket(Rachet)','Html','Css','Bootstrap4','Jquery'],
+            responsibilities:[
+                `Develop seamless REST and SOAP APIs for integrating with game providers including 
+                PRAGMATIC PLAY, SA GAMING, SIMPLE PLAY, BIGPOT, CLOT, JILI, POCKETGAMES, 
+                and EVO.`,
+                `Review and analyze merchant documentation to ensure seamless API connectivity.`,
+                ` Develop a responsive front end that works seamlessly across all platforms, from 
+                desktop to mobile devices, and ensure cross-platform optimization.`,
+                `Apply security protocols to protect confidential data`,
+                `Develop and maintain database schemas for optimal data organization and storage.`,
+            ],
+            techstack:['PHP','Javascript','Codeigniter','Mysql','Socket(Rachet)','Html','Css','Bootstrap','Jquery'],
         
     },
     {
@@ -173,17 +188,17 @@ const objectiveList=[
             "To offer accurate tracking of parked vehicles, including their duration, and calculate the precise amount required for payment."
         ],
         responsibilities:[
-            "Develop front-end website architecture.",
-            "Design user interaction on web pages.",
-            "Develop back-end website application.",
-            "Design and implement database structures.",
-            "Optimize database queries for efficiency and performance.",
-            "Configuration of Web Sockets (Ratchet).",
-            "Define endpoints and data formats for communication between different parts of the application.",
-            "Work alongside graphic designer for web design features.",
-            "Ensure cross-platform optimization."
+            `Develop front-end website architecture.`,
+            `Design user interaction on web pages.`,
+            `Develop back-end website application.`,
+            `Design and implement database structures.`,
+            `Optimize database queries for efficiency and performance.`,
+            `Configuration of Web Sockets (Ratchet).`,
+            `Define endpoints and data formats for communication between different parts of the application.`,
+            `Work alongside graphic designer for web design features.`,
+            `Ensure cross-platform optimization.`
         ],
-        techstack:['Codeigniter','Mysql','Html','Css','Bootstrap4','Jquery'],
+        techstack:['Codeigniter','Mysql','Html','Css','Bootstrap','Jquery'],
     },
    
  
@@ -264,7 +279,7 @@ const toggleModal = () => document.body.classList.toggle("open-modal");
 
 const experienceList = [  
     {
-        company: 'MDSCSI',
+        company: 'MDSCSI / TECH PRIME',
         date: 'August 2023 - Present',
         role: 'Fullstack Developer',
         description: `

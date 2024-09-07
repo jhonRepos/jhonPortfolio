@@ -945,3 +945,9 @@ p{
     100% { opacity: 0; transform: translateY(50px); }
     }
     
+
+.btn-holder{
+  display: flex;
+  justify-content: start;
+  gap: 20px;
+}
