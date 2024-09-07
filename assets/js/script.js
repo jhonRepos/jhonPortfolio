@@ -280,7 +280,7 @@ const toggleModal = () => document.body.classList.toggle("open-modal");
 const experienceList = [  
     {
         company: 'MDSCSI / TECH PRIME',
-        date: 'August 2023 - Present',
+        date: 'August 2023 - August 2024',
         role: 'Fullstack Developer',
         description: `
             Translate UX wireframes to production-ready code. 
