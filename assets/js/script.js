@@ -79,6 +79,7 @@ window.addEventListener('scroll', ()=>{
 const objectiveList=[
     {
         image:'hris-laptop.png',
+        url:'https://hris.lucky8star.com',
         title:'HRIS (Human Resource Information System)',
         role:'Fullstack Developer',
         objective:[
@@ -105,6 +106,7 @@ const objectiveList=[
     },
     {
         image:'ocbs-laptop.png',
+        url:'https://ocbs.alpharedph.com',
         title:'OCBS/CRM',
         role:'Fullstack Developer',
         objective:[
@@ -130,6 +132,7 @@ const objectiveList=[
     },
     {
         image:'lt-laptop.png',
+        url:null,
         title:'ELOTTO',
         role:'Fullstack Developer',
         objective:[
@@ -158,6 +161,7 @@ const objectiveList=[
     },
     {
         image:'digi.png',
+        url:'https://digiluck.world',
         title:'OtchoPlay - Gaming Platform',
         role:'Fullstack Developer',
         objective:[
@@ -182,6 +186,7 @@ const objectiveList=[
     },
     {
         image:'parking-laptop.png',
+        url:'https://parking.lucky8star.com',
         title:'Parking Monitoring and Casher System',
         role:'Fullstack Developer',
         objective:[ 
@@ -266,9 +271,8 @@ function viewProject(index){
     $('.role').html(project.role);
     $('.objective-list').html(objective);
     $('.responsibilities-list').html(responsibilities);
-    $('.tech-list').html(techStack)
-
-
+    $('.tech-list').html(techStack);
+    $('.url').html(project.url ? `URL :&nbsp; <a href="${project.url}"> ${project.url}</a>` : '');
 }
 
 const toggleModal = () => document.body.classList.toggle("open-modal");
@@ -278,6 +282,14 @@ const toggleModal = () => document.body.classList.toggle("open-modal");
 // experience section 
 
 const experienceList = [  
+    {
+        company: 'FREELANCE',
+        date: 'August 2024 - December 2024',
+        role: 'Fullstack Developer',
+        description: `
+           Building a casino platform with deposit and withdrawal features, integrated with payment partners such as Maya, GCash, and others. Additionally, developing a payment gateway that connects to banks in Thailand, Vietnam, and Malaysia.
+        `,
+    },
     {
         company: 'MDSCSI / TECH PRIME',
         date: 'August 2023 - August 2024',
