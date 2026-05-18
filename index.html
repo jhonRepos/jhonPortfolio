@@ -1,165 +1,266 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="icon" href="./assets/image/logo-tab.png"  type="image/x-icon">
+    <title>Jhon Edward Salvan — Full-Stack Developer</title>
+    <meta name="description" content="Full-Stack Developer specializing in PHP, CodeIgniter, real-time WebSocket systems, and API integrations. 5+ years building production-grade web applications.">
+    <link rel="icon" href="./assets/image/logo-tab.png" type="image/x-icon">
+
+    <!-- Dark mode flash prevention -->
+    <script>
+        (function () {
+            const t = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <div class="loader-overlay">
-        <div class="container-loader ">
-            <div class="cube"><div class="cube__inner"></div></div>
-            <div class="cube"><div class="cube__inner"></div></div>
-            <div class="cube"><div class="cube__inner"></div></div>
-            <div class="cube"><div class="cube__inner"></div></div>
-          </div>
+
+    <!-- Loader -->
+    <div class="loader-overlay" id="loader">
+        <div class="loader-dots">
+            <span></span><span></span><span></span>
+        </div>
     </div>
 
-    <header>
-        <nav id="nav-bar">
-            <img  src="./assets/image/logo.png" alt="download"  width="100"  onclick="scrollToview('hero', event)"/>
-            <ul  class="nav-ul">
-            <a href="#" class="nav"  onclick="scrollToview('hero', event)"><li>Home</li></a>
-            <a href="#" class="nav"   onclick="scrollToview('project', event)"><li>Projects</li></a>
-            <a href="#" class="nav"   onclick="scrollToview('experience', event)"><li>Experience</li></a>
-            <a href="#" class="nav"  onclick="scrollToview('about', event)"><li>About Me</li></a>
+    <!-- Navigation -->
+    <header class="nav-header" id="navbar">
+        <nav class="nav-container">
+            <a class="nav-logo" href="#hero" aria-label="Home">
+                <img src="./assets/image/logo.png" alt="JES" height="38">
+            </a>
+            <ul class="nav-links" role="list">
+                <li><a href="#hero"       class="nav-link" data-section="hero">Home</a></li>
+                <li><a href="#about"      class="nav-link" data-section="about">About</a></li>
+                <li><a href="#skills"     class="nav-link" data-section="skills">Skills</a></li>
+                <li><a href="#projects"   class="nav-link" data-section="projects">Projects</a></li>
+                <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
+                <li><a href="#contact"    class="nav-link" data-section="contact">Contact</a></li>
             </ul>
-            <ul id="nav-ul-burger">
-                <div class="burger-menu burger-menu--closed">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
-             </ul>
-        </nav>
-        <div id="nav-overlay" class="overlay" >
-            <a href="#" class="closebtn" >&times;</a>
-            <div class="overlay-content">
-                <a href="#"  class="nav1"  onclick="scrollToview('hero', event)"><li>Home</li></a>
-                <a href="#"  class="nav1"  onclick="scrollToview('project', event)"><li>Projects</li></a>
-                <a href="#"  class="nav1"  onclick="scrollToview('experience', event)"><li>Experience</li></a>
-                <a href="#"  class="nav1"  onclick="scrollToview('about', event)"><li>About Me</li></a>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon" id="themeIcon"></i>
+                </button>
+                <button class="burger-btn" id="burgerBtn" aria-label="Open menu" aria-expanded="false">
+                    <span class="burger-bar"></span>
+                    <span class="burger-bar"></span>
+                    <span class="burger-bar"></span>
+                </button>
             </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+            <ul class="mobile-nav-links" role="list">
+                <li><a href="#hero"       class="mobile-nav-link">Home</a></li>
+                <li><a href="#about"      class="mobile-nav-link">About</a></li>
+                <li><a href="#skills"     class="mobile-nav-link">Skills</a></li>
+                <li><a href="#projects"   class="mobile-nav-link">Projects</a></li>
+                <li><a href="#experience" class="mobile-nav-link">Experience</a></li>
+                <li><a href="#contact"    class="mobile-nav-link">Contact</a></li>
+            </ul>
         </div>
     </header>
- 
-    <section id="hero">
-    
-        <img src="./assets/image/php.png" id="php">
-        <img src="./assets/image/js.png" id="js">
-        <img src="./assets/image/greater.png" id="greater"  >
-        <img src="./assets/image/css.png" id="css">
-        <img src="./assets/image/brocket.png" id="brocket">    
-        <img src="./assets/image/paren.png" id="paren">
-        <img src="./assets/image/person.png" id="person">
-        <img src="./assets/image/sql.png" id="sql">
-        <h2 id="text"><span>WEB</span> DEVELOPER </h2>
 
-    </section>
-    <section id="project" >
-        <div id="project-view" data-current-id="0">
-            <div class="card-picture">
-           
+    <!-- ===== HERO ===== -->
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <span class="hero-greeting animate-fade-up" style="--delay:0ms">Hello, I'm</span>
+            <h1 class="hero-name animate-fade-up" style="--delay:100ms">Jhon Edward Salvan</h1>
+            <h2 class="hero-title animate-fade-up" style="--delay:200ms">
+                <span id="typewriter"></span><span class="cursor" aria-hidden="true">|</span>
+            </h2>
+            <p class="hero-tagline animate-fade-up" style="--delay:300ms">
+                Building scalable web applications &amp; digital experiences that drive real-world impact.
+            </p>
+            <div class="hero-cta animate-fade-up" style="--delay:400ms">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fa-solid fa-eye"></i> View My Work
+                </a>
+                <a href="./assets/image/Salvan-Jhon-Edward-cv.pdf" download class="btn btn-outline">
+                    <i class="fa-solid fa-download"></i> Download CV
+                </a>
             </div>
-            <div class="card-content">
-                    <h2 class="system"></h2>
-                    <h4 class="role"></h4>
-                    <div class="objective-container">
-                        <h4>OBJECTIVE</h4>
-                        <ul class="objective-list">
-                            
-                        </ul>
+            <div class="hero-socials animate-fade-up" style="--delay:500ms">
+                <a href="mailto:Jhonedward.salvan@gmail.com" class="social-link" aria-label="Send email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a href="#" class="social-link" id="heroGithub" aria-label="GitHub" target="_blank" rel="noopener">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="#" class="social-link" id="heroLinkedin" aria-label="LinkedIn" target="_blank" rel="noopener">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-visual animate-fade-up" style="--delay:200ms" aria-hidden="true">
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                    <span class="code-filename">developer.php</span>
+                </div>
+                <div class="code-body">
+<pre><code><span class="ck">class</span> <span class="cc">JhonEdward</span> {
+
+  <span class="ck">public</span> <span class="cv">$role</span>       = <span class="cs">'Full-Stack Dev'</span>;
+  <span class="ck">public</span> <span class="cv">$experience</span> = <span class="cs">'5+ years'</span>;
+  <span class="ck">public</span> <span class="cv">$location</span>   = <span class="cs">'Philippines'</span>;
+
+  <span class="ck">public function</span> <span class="cf">skills</span>(): <span class="cc">array</span> {
+    <span class="ck">return</span> [
+      <span class="cs">'PHP'</span>, <span class="cs">'JavaScript'</span>, <span class="cs">'Flutter'</span>, <span class="cs">'Python'</span>,
+      <span class="cs">'React Native'</span>, <span class="cs">'WebSockets'</span>,
+      <span class="cs">'REST APIs'</span>, <span class="cs">'SOAP APIs'</span>,
+    ];
+  }
+
+  <span class="ck">public function</span> <span class="cf">deliver</span>(): <span class="cc">string</span> {
+    <span class="ck">return</span> <span class="cs">'Clean, scalable code ✓'</span>;
+  }
+
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="about-section section-padding">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">Who I Am</span>
+                <h2 class="section-title">About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-image animate-on-scroll">
+                    <div class="about-image-wrapper">
+                        <img src="./assets/image/blackwhite.jpg" alt="Jhon Edward Salvan" class="profile-photo" loading="lazy">
                     </div>
-                    <div class="tech-stack-container">
-                        <h4>TECH STACK</h4>
-                        <div class="tech-list">
+                </div>
+                <div class="about-text animate-on-scroll" style="--delay:150ms">
+                    <h3 class="about-subtitle">Full-Stack Developer &amp; <span>API Integration Specialist</span></h3>
+                    <p>I'm a Full-Stack Developer with 5+ years of experience architecting and shipping production-grade web applications across fintech, gaming, HR, and enterprise sectors. I specialize in PHP/CodeIgniter ecosystems, real-time WebSocket systems, and multi-provider API integrations — delivering solutions that are performant, secure, and maintainable at scale.</p>
+                    <p>From enterprise HRIS platforms and online lottery systems to cross-border payment gateways and multi-provider casino platforms, I thrive at the intersection of complex business logic and clean, user-centric interfaces. Every project I take on is an opportunity to engineer something that genuinely moves the needle.</p>
+                    <div class="about-stats">
+                        <div class="stat animate-on-scroll" style="--delay:0ms">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Years Experience</span>
                         </div>
-                        <h4 class="url"></h4>
-                        
-                        <button class="btn" onclick="toggleModal()" type="button" id="more-btn">Read more</button>
+                        <div class="stat animate-on-scroll" style="--delay:80ms">
+                            <span class="stat-number">7+</span>
+                            <span class="stat-label">Projects Delivered</span>
+                        </div>
+                        <div class="stat animate-on-scroll" style="--delay:160ms">
+                            <span class="stat-number">8+</span>
+                            <span class="stat-label">API Integrations</span>
+                        </div>
                     </div>
+                    <div class="about-cta">
+                        <a href="./assets/image/Salvan-Jhon-Edward-cv.pdf" download class="btn btn-primary">
+                            <i class="fa-solid fa-download"></i> Download CV
+                        </a>
+                        <a href="./assets/image/JHON EDWARD SALVAN-porfolio.pdf" download class="btn btn-outline">
+                            <i class="fa-solid fa-folder-open"></i> Portfolio PDF
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="project-selection">
+    </section>
 
+    <!-- ===== SKILLS ===== -->
+    <section id="skills" class="skills-section section-padding">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">What I Use</span>
+                <h2 class="section-title">Technical Arsenal</h2>
+                <p class="section-subtitle">A battle-tested toolkit built across 5+ years of production development</p>
+            </div>
+            <div class="skills-grid" id="skillsGrid"></div>
         </div>
+    </section>
 
-        <!-- start modal for project details-->
-        <div class="modal-container" onclick="toggleModal()"></div>
-        <div class="modal-window">
-            <div class="card-container">
-             
-                <h2 class="system"></h2>
-                <h4 class="role"></h4>
-                <div class="objective-container">
-                    <h4>OBJECTIVE:</h4>
-                    <ul class="objective-list">
-                        
-                    </ul>
-                </div>
-                <div class="objective-container">
-                    <h4>ROLES AND RESPONSIBILITIES:</h4>
-                    <ul class="responsibilities-list">
-                        
-                    </ul>
-                </div>
-                <div class="tech-stack-container">
-                    <h4>TECH STACK</h4>
-                    <div class="tech-list">
-                    </div>
-                   
-                </div>
-               
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects" class="projects-section section-padding">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">My Work</span>
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Production systems built for real businesses — from fintech to gaming to enterprise</p>
+            </div>
+            <div class="projects-grid" id="projectsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Project Drawer -->
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <aside class="project-drawer" id="projectDrawer" aria-hidden="true" role="dialog" aria-label="Project details">
+        <button class="drawer-close" id="drawerClose" aria-label="Close details">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="drawer-content" id="drawerContent"></div>
+    </aside>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section id="experience" class="experience-section section-padding">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">My Journey</span>
+                <h2 class="section-title">Career Timeline</h2>
+            </div>
+            <div class="timeline" id="timeline"></div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="contact-section section-padding">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">Get In Touch</span>
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">Have a project in mind or want to collaborate? I'd love to hear from you.</p>
+            </div>
+            <div class="contact-cards animate-on-scroll">
+                <a href="mailto:Jhonedward.salvan@gmail.com" class="contact-card">
+                    <div class="contact-card-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <span class="contact-card-title">Email</span>
+                    <span class="contact-card-value">Jhonedward.salvan@gmail.com</span>
+                </a>
+                <a href="#" class="contact-card" id="contactGithub" target="_blank" rel="noopener">
+                    <div class="contact-card-icon"><i class="fa-brands fa-github"></i></div>
+                    <span class="contact-card-title">GitHub</span>
+                    <span class="contact-card-value">View my repositories</span>
+                </a>
+                <a href="#" class="contact-card" id="contactLinkedin" target="_blank" rel="noopener">
+                    <div class="contact-card-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                    <span class="contact-card-title">LinkedIn</span>
+                    <span class="contact-card-value">Let's connect professionally</span>
+                </a>
             </div>
         </div>
-<!-- end modal for project details-->
-
-        
-    </section>
-    <section id="experience" >
-        <div class="timeline">
-            <ul id="parentList">
-
-
-            </ul>
-          </div>
-
-
     </section>
 
-    <section id="about" >
-        <div class="about-container animated-div">
-            <img class="about-picture" src="./assets/image/blackwhite.jpg" >
-            <div class="about-text" >
-                <h4>About Me</h4>
-                <h5>Full-Stack <span>Developer</span></h5>
-                <!-- <p>Experienced Full Stack Developer with a focus on PHP and the CodeIgniter framework. Skilled in both back-end and front-end development, proficient in server-side programming, database management, and API integration. Strong problem-solving abilities, committed to delivering clean code and meeting deadlines. Updated with industry trends and best practices. Track record of delivering high-quality projects. Ready to contribute PHP expertise to your organization's success.</p> -->
-                <p> I am an experienced web developer with over three years of expertise, delivering high-impact web solutions for
-                    diverse industry organizations. Proficient in designing and developing multiple web-based applications,
-                    incorporating a range of technologies
-                </p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Jhon Edward Salvan.</p>
+        </div>
+    </footer>
 
-                <div class="btn-holder">
-                    <a href="./assets/image/JHON EDWARD SALVAN-CV.pdf"  download>
-                        <button class="btn " >Let's Talk</button>
-                      </a>
-                      <a href="./assets/image/JHON EDWARD SALVAN-porfolio.pdf"  download>
-                        <button class="btn">More Project List</button>
-                      </a>
-                </div>
-            
-            </div>  
-        </div>   
-
-    </section>
-
-
+    <script src="./assets/js/script.js"></script>
 </body>
-<script
-  src="https://code.jquery.com/jquery-3.7.1.js"
-  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-  crossorigin="anonymous"></script>
-<script src="./assets/js/script.js"></script>
 </html>

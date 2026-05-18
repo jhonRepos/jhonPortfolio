@@ -1,377 +1,593 @@
-
-    
-    setTimeout(function() {
-        var loaderOverlay = document.querySelector('.loader-overlay');
-        loaderOverlay.classList.add('hide-overlay');
-        setTimeout(function() {
-            loaderOverlay.style.display = 'none';
-        }, 900); // Adjust timing as needed
-    }, 1000);
-
-
-function scrollToview(select, event) {
-    event.preventDefault();
-    var section = document.getElementById(select);
-    if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-        document.getElementById("nav-overlay").style.width = "0%";
-    }
+/* ============================================================
+   THEME
+   ============================================================ */
+function getTheme() {
+    return document.documentElement.getAttribute('data-theme') || 'light';
 }
-   
 
-   
-   
-// HERO SECTION
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    document.getElementById('themeIcon').className =
+        theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+}
 
+function toggleTheme() {
+    setTheme(getTheme() === 'dark' ? 'light' : 'dark');
+}
 
-$('.burger-menu').on('click', function() {
+function initTheme() {
+    setTheme(getTheme());
+}
 
-    document.getElementById("nav-overlay").style.width = "100%";
-
-  });
-$('.closebtn').on('click', function() {
-document.getElementById("nav-overlay").style.width = "0%";
-
+/* ============================================================
+   LOADER
+   ============================================================ */
+window.addEventListener('load', function () {
+    setTimeout(function () {
+        var loader = document.getElementById('loader');
+        loader.classList.add('hidden');
+    }, 900);
 });
 
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+function initMobileMenu() {
+    var burger = document.getElementById('burgerBtn');
+    var menu   = document.getElementById('mobileMenu');
 
-let text= document.getElementById('text');
-
-let php= document.getElementById('php');
-let js= document.getElementById('js');
-let greater= document.getElementById('greater');
-let css= document.getElementById('css');
-let brocket= document.getElementById('brocket');
-let paren= document.getElementById('paren');
-let person= document.getElementById('person');
-let sql= document.getElementById('sql');
-
-window.addEventListener('scroll', ()=>{
-    let value = window.scrollY;
-
-    text.style.marginTop =value * 2.5 + 'px';
-    person.style.left =value * -1.5 + 'px';
-
-    css.style.marginBottom =value * 1.5 + 'px';
-    css.style.left =value * 1.5 + 'px';
-    brocket.style.left =value * 1.5 + 'px';
-    brocket.style.marginBottom =value * -1.5 + 'px';
-    sql.style.left =value * 1.5 + 'px';
-    php.style.marginBottom =value * 1.5 + 'px';
-
-
-    paren.style.left =value * -1.5 + 'px';
-    js.style.left =value * -1.5 + 'px';
-
-    
-    document.querySelectorAll('.section').forEach(function(section) {
-        let offset = section.offsetTop;
-        let distance = offset - value;
-        let speed = section.getAttribute('data-speed');
-
-        section.style.backgroundPositionY = -(distance * speed) + 'px';
+    burger.addEventListener('click', function () {
+        var isOpen = menu.classList.toggle('open');
+        burger.classList.toggle('active', isOpen);
+        burger.setAttribute('aria-expanded', isOpen);
+        menu.setAttribute('aria-hidden', !isOpen);
     });
-})
 
+    document.querySelectorAll('.mobile-nav-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+            menu.classList.remove('open');
+            burger.classList.remove('active');
+            burger.setAttribute('aria-expanded', 'false');
+            menu.setAttribute('aria-hidden', 'true');
+        });
+    });
+}
 
-// PROJECT SECTION
+/* ============================================================
+   SMOOTH SCROLL
+   ============================================================ */
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+            var href = anchor.getAttribute('href');
+            if (href === '#') return;
+            e.preventDefault();
+            var target = document.querySelector(href);
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+}
 
-const objectiveList=[
+/* ============================================================
+   TYPEWRITER
+   ============================================================ */
+function initTypewriter() {
+    var titles  = ['Full-Stack Developer', 'Web Application Engineer', 'API Integration Specialist'];
+    var el      = document.getElementById('typewriter');
+    var ti      = 0;
+    var ci      = 0;
+    var deleting = false;
+
+    function tick() {
+        var word = titles[ti];
+
+        if (!deleting) {
+            el.textContent = word.slice(0, ++ci);
+            if (ci === word.length) {
+                deleting = true;
+                setTimeout(tick, 2200);
+                return;
+            }
+        } else {
+            el.textContent = word.slice(0, --ci);
+            if (ci === 0) {
+                deleting = false;
+                ti = (ti + 1) % titles.length;
+            }
+        }
+        setTimeout(tick, deleting ? 42 : 82);
+    }
+
+    tick();
+}
+
+/* ============================================================
+   SCROLL ANIMATIONS — Intersection Observer
+   ============================================================ */
+function initScrollAnimations() {
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(function (el) {
+        observer.observe(el);
+    });
+}
+
+/* ============================================================
+   ACTIVE NAV HIGHLIGHT
+   ============================================================ */
+function initActiveNav() {
+    var sections  = document.querySelectorAll('section[id]');
+    var navLinks  = document.querySelectorAll('.nav-link');
+    var navbar    = document.getElementById('navbar');
+
+    window.addEventListener('scroll', function () {
+        var scrollY = window.scrollY;
+
+        navbar.classList.toggle('scrolled', scrollY > 60);
+
+        var current = '';
+        sections.forEach(function (sec) {
+            if (scrollY >= sec.offsetTop - 160) current = sec.id;
+        });
+
+        navLinks.forEach(function (link) {
+            link.classList.toggle('active', link.dataset.section === current);
+        });
+    }, { passive: true });
+}
+
+/* ============================================================
+   SKILLS DATA & RENDER
+   ============================================================ */
+var skillsData = [
     {
-        image:'hris-laptop.png',
-        url:'https://hris.lucky8star.com',
-        title:'HRIS (Human Resource Information System)',
-        role:'Fullstack Developer',
-        objective:[
-            `Enhance efficiency and accuracy in HR operations by 
-            streamlining data management processes, supporting 
-            organizational growth and scalability through customizable 
-            workflows and scalability features within the HRIS platform, 
-            enabling employees to easily request overtime, leave, or schedule 
-            changes, manage timekeeping, access their pay slips, and 
-            streamline payroll generation within the HR and payroll 
-            management system.`
-         ],
-        responsibilities:[
-            `Develop front-end website architecture.`,
-            `Design user interaction on web pages.`,
-            `Develop back-end website application.`,
-            `Design and implement database structures.`,
-            `Optimize database queries for efficiency and performance.`,
-            `Define endpoints and data formats for communication between different parts of the application.`,
-            `Work alongside graphic designer for web design features.`,
-            `Ensure cross-platform optimization.`
-          ],
-        techstack:['PHP','Javascript','Codeigniter','Mysql','Html','Css','Bootstrap','Jquery'],
+        icon: 'fa-solid fa-code',
+        color: '#2563eb',
+        category: 'Frontend & Mobile',
+        skills: ['JavaScript', 'Vue.js', 'React', 'HTML5', 'CSS3', 'Bootstrap', 'Tailwind CSS', 'Flutter', 'Responsive UI'],
     },
     {
-        image:'ocbs-laptop.png',
-        url:'https://ocbs.alpharedph.com',
-        title:'OCBS/CRM',
-        role:'Fullstack Developer',
-        objective:[
-           ` Track the Kios Application's progress by streamlining 
-            operations with departments (Finance, Sales, Helpdesk, Audit) and 
-            third-party companies, monitor inventory for equipment at each 
-            kiosk site and in company storage, and manage the transition from 
-            installation to operation. Additionally, allow kiosk owners to apply 
-            for additional equipment while the system monitors both company 
-            and kiosk owner inventory.`
-            ],
-        responsibilities:[
-            `Develop front-end website architecture.`,
-            `Design user interaction on web pages.`,
-            `Develop back-end website application.`,
-            `Design and implement database structures.`,
-            `Optimize database queries for efficiency and performance.`,
-            `Define endpoints and data formats for communication between different parts of the application.`,
-            `Work alongside graphic designer for web design features.`,
-            `Ensure cross-platform optimization.`
-          ],
-          techstack:['PHP','Javascript','Codeigniter','Mysql','Html','Css','Bootstrap','Jquery'],
+        icon: 'fa-solid fa-server',
+        color: '#1b3a6b',
+        category: 'Backend & APIs',
+        skills: ['PHP', 'Laravel', 'CodeIgniter', 'Python', 'REST APIs', 'Microservices', 'WebSockets', 'SOAP APIs'],
     },
     {
-        image:'lt-laptop.png',
-        url:null,
-        title:'ELOTTO',
-        role:'Fullstack Developer',
-        objective:[
-        `Provide a user-friendly interface for purchasing lottery 
-            tickets online, ensure secure payment processing, and offer 
-            effortless deposit and withdrawal options through partnered 
-            merchants such as Gcash, Paymaya, and DragonPay. Additionally, 
-            provide informative content about each lottery game, including 
-            rules, odds, and past winning numbers, and regularly audit and 
-            review the platform's security measures to protect user data and 
-            transactions.`
-        ],
-        responsibilities:[
-            `Develop front-end website architecture.`,
-            `Develop a socket for continuous connectivity between the player side and the management side`,
-            `Design user interaction on web pages.`,
-            `Develop back-end website application.`,
-            `Design and implement database structures.`,
-            `Optimize database queries for efficiency and performance.`,
-            `Configuration of Web Sockets (Ratchet).`,
-            `Define endpoints and data formats for communication between different parts of the application.`,
-            `Work alongside graphic designer for web design features.`,
-            `Ensure cross-platform optimization.`
-        ],
-        techstack:['Codeigniter','Mysql','Socket(Rachet)','Html','Css','Bootstrap','Jquery'],
+        icon: 'fa-solid fa-database',
+        color: '#7c3aed',
+        category: 'Databases & Infrastructure',
+        skills: ['MySQL', 'MariaDB', 'MongoDB', 'Redis', 'AWS (EC2, S3)', 'Docker', 'Linux', 'Nginx', 'Apache'],
     },
     {
-        image:'digi.png',
-        url:'https://digiluck.world',
-        title:'OtchoPlay - Gaming Platform',
-        role:'Fullstack Developer',
-        objective:[
-            `Develop a secure and engaging casino platform 
-            offering a wide variety of high-quality games. Focus on delivering a 
-            seamless user experience with robust security features and efficient 
-            transaction processing. Ensure compliance with industry 
-            regulations`
-            ],
-            responsibilities:[
-                `Develop seamless REST and SOAP APIs for integrating with game providers including 
-                PRAGMATIC PLAY, SA GAMING, SIMPLE PLAY, BIGPOT, CLOT, JILI, POCKETGAMES, 
-                and EVO.`,
-                `Review and analyze merchant documentation to ensure seamless API connectivity.`,
-                ` Develop a responsive front end that works seamlessly across all platforms, from 
-                desktop to mobile devices, and ensure cross-platform optimization.`,
-                `Apply security protocols to protect confidential data`,
-                `Develop and maintain database schemas for optimal data organization and storage.`,
-            ],
-            techstack:['PHP','Javascript','Codeigniter','Mysql','Socket(Rachet)','Html','Css','Bootstrap','Jquery'],
-        
+        icon: 'fa-solid fa-wrench',
+        color: '#059669',
+        category: 'Tools & Platforms',
+        skills: ['Git', 'Jira', 'Figma', 'Postman', 'Draw.io', 'Slack', 'VS Code'],
     },
-    {
-        image:'parking-laptop.png',
-        url:'https://parking.lucky8star.com',
-        title:'Parking Monitoring and Casher System',
-        role:'Fullstack Developer',
-        objective:[ 
-            "To offer accurate tracking of parked vehicles, including their duration, and calculate the precise amount required for payment."
-        ],
-        responsibilities:[
-            `Develop front-end website architecture.`,
-            `Design user interaction on web pages.`,
-            `Develop back-end website application.`,
-            `Design and implement database structures.`,
-            `Optimize database queries for efficiency and performance.`,
-            `Configuration of Web Sockets (Ratchet).`,
-            `Define endpoints and data formats for communication between different parts of the application.`,
-            `Work alongside graphic designer for web design features.`,
-            `Ensure cross-platform optimization.`
-        ],
-        techstack:['Codeigniter','Mysql','Html','Css','Bootstrap','Jquery'],
-    },
-   
- 
 ];
 
+function renderSkills() {
+    var grid = document.getElementById('skillsGrid');
+    grid.innerHTML = skillsData.map(function (cat, i) {
+        return '<div class="skill-card animate-on-scroll" style="--delay:' + (i * 90) + 'ms">'
+            + '<div class="skill-card-header">'
+            +   '<div class="skill-icon" style="color:' + cat.color + '">'
+            +     '<i class="' + cat.icon + '"></i>'
+            +   '</div>'
+            +   '<h3 class="skill-category">' + cat.category + '</h3>'
+            + '</div>'
+            + '<div class="skill-badges">'
+            +   cat.skills.map(function (s) {
+                    return '<span class="skill-badge">' + s + '</span>';
+                }).join('')
+            + '</div>'
+            + '</div>';
+    }).join('');
 
+    initScrollAnimations();
+}
 
-const cardContainer= document.querySelector('#project-selection');
+/* ============================================================
+   PROJECTS DATA
+   ============================================================ */
+var projectsData = [
+    {
+        id: 'hris',
+        image: './assets/image/project-image/hris-laptop.png',
+        url: 'https://hris.lucky8star.com',
+        title: 'HRIS — Human Resource Management System',
+        role: 'Full-Stack Developer',
+        shortDesc: 'Enterprise HR automation covering payroll, timekeeping, leave management, and employee self-service at scale.',
+        objective: 'End-to-end HR automation platform serving enterprise operations — streamlining payroll generation, timekeeping, overtime and leave requests, and employee self-service. Engineered for high data volume with customizable workflows that centralize HR operations into a single, auditable system.',
+        responsibilities: [
+            'Architected full-stack application from database design to responsive UI delivery',
+            'Engineered a real-time payroll engine with configurable deduction, allowance, and tax computation rules',
+            'Built a self-service employee portal for leave requests, overtime applications, and payslip access',
+            'Optimized complex MySQL queries handling multi-department payroll runs across large employee datasets',
+            'Defined and documented RESTful API endpoints for inter-module communication',
+            'Ensured cross-browser and cross-device compatibility across all HR modules',
+        ],
+        techstack: ['PHP', 'CodeIgniter', 'MySQL', 'Bootstrap', 'jQuery', 'JavaScript'],
+        wide: false,
+    },
+    {
+        id: 'ocbs',
+        image: './assets/image/project-image/ocbs-laptop.png',
+        url: 'https://ocbs.alpharedph.com',
+        title: 'OCBS / CRM — Kiosk Operations Platform',
+        role: 'Full-Stack Developer',
+        shortDesc: 'Multi-department CRM orchestrating kiosk lifecycle management, inventory tracking, and third-party coordination across 100+ sites.',
+        objective: 'A centralized operations platform managing the full kiosk deployment lifecycle — from equipment inventory and installation to live operation. Coordinated workflows across Finance, Sales, Helpdesk, and Audit departments, with real-time inventory visibility for both company and kiosk-owner assets.',
+        responsibilities: [
+            'Designed a multi-role access system with department-specific dashboards and granular permission layers',
+            'Built an inventory management module tracking equipment allocation across 100+ kiosk sites',
+            'Developed automated workflow triggers for installation milestones and operational status changes',
+            'Integrated third-party vendor communication pipelines for seamless partner coordination',
+            'Implemented reporting dashboards giving management real-time operational visibility',
+            'Ensured cross-platform optimization across desktop and tablet devices used in field operations',
+        ],
+        techstack: ['PHP', 'CodeIgniter', 'MySQL', 'Bootstrap', 'jQuery', 'JavaScript'],
+        wide: false,
+    },
+    {
+        id: 'elotto',
+        image: './assets/image/project-image/lt-laptop.png',
+        url: null,
+        title: 'ELOTTO — Online Lottery Platform',
+        role: 'Full-Stack Developer',
+        shortDesc: 'Regulated online lottery with real-time draws via WebSockets and seamless payment integrations through GCash, Maya & DragonPay.',
+        objective: 'A secure and user-friendly online lottery platform enabling players to purchase tickets, watch live draws in real time, and manage deposits and withdrawals through integrated payment partners. Built with a security-first architecture to protect user data and ensure transactional integrity under high concurrency.',
+        responsibilities: [
+            'Architected a real-time WebSocket layer (Ratchet) syncing live draw broadcasts across player and admin interfaces',
+            'Integrated GCash, Maya, and DragonPay payment APIs for frictionless deposit and withdrawal flows',
+            'Developed a secure ticket purchasing flow with full transaction logging and audit trails',
+            'Implemented lottery result publication and an automated winning calculation engine',
+            'Designed and optimized database schemas for high-concurrency ticket and transaction operations',
+            'Conducted security reviews of all payment flows and sensitive user data handling',
+        ],
+        techstack: ['CodeIgniter', 'MySQL', 'WebSocket (Ratchet)', 'Bootstrap', 'jQuery'],
+        wide: false,
+    },
+    {
+        id: 'otchoplay',
+        image: './assets/image/project-image/digi.png',
+        url: 'https://digiluck.world',
+        title: 'OtchoPlay — Multi-Provider Casino Platform',
+        role: 'Full-Stack Developer',
+        shortDesc: 'Sophisticated gaming hub integrating 8+ top-tier providers (Pragmatic Play, EVO, JILI & more) via REST & SOAP APIs.',
+        objective: 'A premium online casino platform aggregating 8+ world-class game providers through seamless REST and SOAP API integrations, delivering a secure, engaging experience with robust real-time session management, wallet synchronization, and full regulatory compliance.',
+        responsibilities: [
+            'Integrated REST and SOAP APIs for Pragmatic Play, SA Gaming, Simple Play, BigPot, JILI, Pocket Games, EVO, and CLOT',
+            'Reverse-engineered merchant documentation to ensure specification-compliant API connectivity',
+            'Developed a real-time game session management layer with live wallet synchronization',
+            'Implemented layered security protocols for PII protection and encrypted financial transaction handling',
+            'Built a fully responsive front end optimized across desktop, tablet, and mobile browsers',
+            'Designed and maintained normalized database schemas for player, transaction, and game-provider data',
+        ],
+        techstack: ['PHP', 'CodeIgniter', 'MySQL', 'WebSocket (Ratchet)', 'Bootstrap'],
+        wide: false,
+    },
+    {
+        id: 'parking',
+        image: './assets/image/project-image/parking-laptop.png',
+        url: 'https://parking.lucky8star.com',
+        title: 'Smart Parking & Cashier System',
+        role: 'Full-Stack Developer',
+        shortDesc: 'Real-time vehicle monitoring and automated billing powered by WebSockets, eliminating manual cashier overhead.',
+        objective: 'A real-time parking management system providing instant vehicle entry/exit monitoring, automated duration tracking, and precise fee calculation. Deployed at Lucky8star facilities to eliminate manual processing, reduce queue times, and generate tamper-proof billing records.',
+        responsibilities: [
+            'Built a WebSocket-powered live dashboard for real-time vehicle entry/exit event tracking',
+            'Developed an automated fee calculation engine based on duration tiers and vehicle categories',
+            'Created a cashier UI enabling fast payment processing and digital receipt generation',
+            'Designed database schemas for vehicle records, parking sessions, and payment audit logs',
+            'Integrated with hardware gate controllers via WebSocket messaging protocol',
+            'Optimized for low-latency real-time updates under high-throughput concurrent scenarios',
+        ],
+        techstack: ['CodeIgniter', 'MySQL', 'WebSocket (Ratchet)', 'Bootstrap', 'jQuery'],
+        wide: false,
+    },
+    {
+        id: 'betwinu',
+        image: null,
+        url: 'https://www.betwinu.com/',
+        gradient: 'linear-gradient(135deg, #0d2137 0%, #1b3a6b 55%, #2563eb 100%)',
+        title: 'BetWinU — International Casino Platform',
+        role: 'Full-Stack Developer',
+        shortDesc: 'Premium cross-border casino with multi-currency gateways spanning Philippines, Thailand, Vietnam & Malaysia markets.',
+        objective: 'A production-grade online casino platform with a complete deposit/withdrawal infrastructure integrated with Maya, GCash, and international banking APIs supporting cross-border transactions across Thailand, Vietnam, and Malaysia. Built with compliance-ready architecture, strong encryption, and a real-time transaction processing engine for 24/7 regulated gaming markets.',
+        responsibilities: [
+            'Engineered a multi-currency payment gateway connecting GCash, Maya, and regional banking APIs across PH, TH, VN, and MY',
+            'Built secure deposit and withdrawal flows with automated reconciliation and full audit logging',
+            'Implemented KYC and compliance verification workflows aligned with international gaming regulations',
+            'Developed real-time transaction dashboards for operations and finance team oversight',
+            'Applied layered security protocols for PII protection and end-to-end encrypted financial data handling',
+            'Architected for 24/7 high availability with fault-tolerant design and zero-downtime deployments',
+        ],
+        techstack: ['PHP', 'CodeIgniter', 'MySQL', 'Payment APIs', 'WebSocket', 'Bootstrap'],
+        wide: false,
+    },
+    {
+        id: 'zigzag',
+        image: null,
+        url: null,
+        appStoreUrl: 'https://apps.apple.com/us/app/zig-zag-live/id6755465986',
+        playStoreUrl: 'https://play.google.com/store/apps/details?id=com.zigzaglive.app',
+        isMobileApp: true,
+        gradient: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%)',
+        title: 'ZigZag Live — Social Live Streaming App',
+        role: 'Full-Stack Developer',
+        shortDesc: 'Live streaming platform for iOS & Android — empowering creators to earn through real-time gifting, live battles, and a smart discovery engine.',
+        objective: 'A feature-rich live streaming platform available on both iOS and Android that empowers creators to go live instantly, grow their audience through smart discovery algorithms, and monetize through an advanced gifting and reward economy. Engineered for real-time interaction at scale with live battles, leaderboards, and creator revenue tools.',
+        responsibilities: [
+            'Developed core live streaming infrastructure supporting real-time creator-to-audience interaction at scale',
+            'Built the gifting and virtual coin economy — purchase flows, real-time gift animations, and creator payout logic',
+            'Implemented live battle and ranking systems to drive user engagement and extend session time',
+            'Integrated smart discovery and recommendation algorithms to surface new creators to relevant audiences',
+            'Published and maintained app releases on the App Store (iOS 15.1+) and Google Play (Android)',
+            'Ensured sub-second latency performance under concurrent live stream load with robust fault handling',
+        ],
+        techstack: ['Mobile Development', 'React Native','Augmented Reality','Real-Time Streaming', 'In-App Purchases', 'iOS', 'Android'],
+        wide: true,
+    },
+];
 
-objectiveList.forEach((item, index)=>{
-    const div = document.createElement('div');
-    div.innerHTML = `<img class="image" src="./assets/image/project-image/${item.image}" alt="" draggable="false" onclick="viewProject(${index})"  />`;
-    cardContainer.appendChild(div);
-  
-})
+/* ============================================================
+   PROJECTS RENDER
+   ============================================================ */
+function renderProjects() {
+    var grid = document.getElementById('projectsGrid');
 
-//default project
-viewProject(0);
+    grid.innerHTML = projectsData.map(function (p, i) {
+        var techPreview = p.techstack.slice(0, 4);
+        var extraCount  = p.techstack.length - 4;
 
-function viewProject(index){
- 
-    
-    //animation for displaying project details
-     var $projectView = $('#project-view');
-    var currentIndex= $projectView.data('current-id');
-
-        if(index != currentIndex){
-            $('#project-view').data('current-id', index);
-            $projectView.addClass('slide-in-top');
-                
-            setTimeout(function() {
-                $projectView.removeClass('slide-in-top');
-            }, 500);
-
+        /* --- image area --- */
+        var imageHtml;
+        if (p.image) {
+            imageHtml = '<div class="project-image">'
+                + '<img src="' + p.image + '" alt="' + p.title + '" loading="lazy">'
+                + '</div>';
+        } else {
+            var innerContent;
+            if (p.isMobileApp) {
+                innerContent = '<div class="mobile-app-badge">'
+                    + '<i class="fa-solid fa-mobile-screen-button"></i>'
+                    + '<span>Mobile App</span>'
+                    + '</div>'
+                    + '<div class="store-badges">'
+                    + '<a href="' + p.appStoreUrl + '" target="_blank" rel="noopener" class="store-badge-link" onclick="event.stopPropagation()">'
+                    +   '<i class="fa-brands fa-apple"></i> App Store'
+                    + '</a>'
+                    + '<a href="' + p.playStoreUrl + '" target="_blank" rel="noopener" class="store-badge-link" onclick="event.stopPropagation()">'
+                    +   '<i class="fa-brands fa-google-play"></i> Play Store'
+                    + '</a>'
+                    + '</div>';
+            } else {
+                innerContent = '<div class="project-logo-badge">'
+                    + '<i class="fa-solid fa-globe"></i>'
+                    + '<span>Live Platform</span>'
+                    + '</div>';
+            }
+            imageHtml = '<div class="project-image-placeholder" style="background:' + p.gradient + '">'
+                + innerContent
+                + '</div>';
         }
 
+        /* --- tech badges --- */
+        var techHtml = techPreview.map(function (t) {
+            return '<span class="tech-badge">' + t + '</span>';
+        }).join('');
+        if (extraCount > 0) {
+            techHtml += '<span class="tech-badge tech-badge--more">+' + extraCount + '</span>';
+        }
 
+        /* --- action links --- */
+        var actionsHtml = '';
+        if (p.url) {
+            actionsHtml += '<a href="' + p.url + '" target="_blank" rel="noopener" class="project-link" onclick="event.stopPropagation()">'
+                + '<i class="fa-solid fa-arrow-up-right-from-square"></i> Live'
+                + '</a>';
+        }
+        if (p.isMobileApp) {
+            actionsHtml += '<a href="' + p.appStoreUrl + '" target="_blank" rel="noopener" class="project-link" onclick="event.stopPropagation()">'
+                + '<i class="fa-brands fa-apple"></i> iOS'
+                + '</a>'
+                + '<a href="' + p.playStoreUrl + '" target="_blank" rel="noopener" class="project-link" onclick="event.stopPropagation()">'
+                + '<i class="fa-brands fa-google-play"></i> Android'
+                + '</a>';
+        }
+        actionsHtml += '<button class="btn btn-sm" onclick="openDrawer(\'' + p.id + '\')">Details</button>';
 
+        var wideClass = p.wide ? ' project-card--wide' : '';
 
+        return '<div class="project-card' + wideClass + ' animate-on-scroll" style="--delay:' + (i * 75) + 'ms">'
+            + imageHtml
+            + '<div class="project-card-body">'
+            +   '<div class="project-card-header">'
+            +     '<h3 class="project-title">' + p.title + '</h3>'
+            +     '<span class="project-role">' + p.role + '</span>'
+            +   '</div>'
+            +   '<p class="project-desc">' + p.shortDesc + '</p>'
+            +   '<div class="project-tech">' + techHtml + '</div>'
+            +   '<div class="project-actions">' + actionsHtml + '</div>'
+            + '</div>'
+            + '</div>';
+    }).join('');
 
-    const project = objectiveList[index];
-
-    let objective= '';
-            project.objective.forEach(element => {
-                objective +=`<li>${element}</li>`;
-        });
-    // for( var i= 0 ; i <3; i++){
-    //      objective +=project.objective[i]?`<li>${project.objective[i]}</li>`:'';
-
-    // }
-    let responsibilities=''
-        project.responsibilities.forEach(element => {
-            responsibilities +=`<li>${element}</li>`;
-    });
-
-    
-
-    let techStack= '';
-    project.techstack.forEach(element => {
-        techStack +=`  <label>${element} </label>`;
-    });
-
-    $('.system').html(project.title)
-    $('.card-picture').html(`<img src="./assets/image/project-image/${project.image}" alt=""  draggable="false" />`);
-    $('.role').html(project.role);
-    $('.objective-list').html(objective);
-    $('.responsibilities-list').html(responsibilities);
-    $('.tech-list').html(techStack);
-    $('.url').html(project.url ? `URL :&nbsp; <a href="${project.url}"> ${project.url}</a>` : '');
+    initScrollAnimations();
 }
 
-const toggleModal = () => document.body.classList.toggle("open-modal");
+/* ============================================================
+   PROJECT DRAWER
+   ============================================================ */
+function openDrawer(id) {
+    var p = projectsData.find(function (x) { return x.id === id; });
+    if (!p) return;
 
+    var linksHtml = '';
+    if (p.url) {
+        linksHtml += '<a href="' + p.url + '" target="_blank" rel="noopener" class="drawer-link">'
+            + '<i class="fa-solid fa-arrow-up-right-from-square"></i> View Live</a>';
+    }
+    if (p.isMobileApp) {
+        linksHtml += '<div class="drawer-store-links">'
+            + '<a href="' + p.appStoreUrl + '" target="_blank" rel="noopener" class="drawer-store-btn">'
+            +   '<i class="fa-brands fa-apple"></i> App Store</a>'
+            + '<a href="' + p.playStoreUrl + '" target="_blank" rel="noopener" class="drawer-store-btn">'
+            +   '<i class="fa-brands fa-google-play"></i> Play Store</a>'
+            + '</div>';
+    }
 
+    var respHtml = p.responsibilities.map(function (r) {
+        return '<li>' + r + '</li>';
+    }).join('');
 
-// experience section 
+    var techHtml = p.techstack.map(function (t) {
+        return '<span class="tech-badge tech-badge--lg">' + t + '</span>';
+    }).join('');
 
-const experienceList = [  
+    document.getElementById('drawerContent').innerHTML =
+        '<div class="drawer-project-header">'
+        +   '<h2 class="drawer-title">' + p.title + '</h2>'
+        +   '<span class="drawer-role">' + p.role + '</span>'
+        +   linksHtml
+        + '</div>'
+        + '<div class="drawer-section">'
+        +   '<h4 class="drawer-section-title"><i class="fa-solid fa-bullseye"></i> Project Overview</h4>'
+        +   '<p>' + p.objective + '</p>'
+        + '</div>'
+        + '<div class="drawer-section">'
+        +   '<h4 class="drawer-section-title"><i class="fa-solid fa-list-check"></i> Roles &amp; Responsibilities</h4>'
+        +   '<ul class="drawer-list">' + respHtml + '</ul>'
+        + '</div>'
+        + '<div class="drawer-section">'
+        +   '<h4 class="drawer-section-title"><i class="fa-solid fa-layer-group"></i> Tech Stack</h4>'
+        +   '<div class="drawer-tech">' + techHtml + '</div>'
+        + '</div>';
+
+    document.getElementById('projectDrawer').classList.add('open');
+    document.getElementById('drawerBackdrop').classList.add('open');
+    document.getElementById('projectDrawer').setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeDrawer() {
+    document.getElementById('projectDrawer').classList.remove('open');
+    document.getElementById('drawerBackdrop').classList.remove('open');
+    document.getElementById('projectDrawer').setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+}
+
+/* ============================================================
+   EXPERIENCE DATA & RENDER
+   ============================================================ */
+var experienceData = [
     {
-        company: 'FREELANCE',
-        date: 'August 2024 - December 2024',
-        role: 'Fullstack Developer',
-        description: `
-           Building a casino platform with deposit and withdrawal features, integrated with payment partners such as Maya, GCash, and others. Additionally, developing a payment gateway that connects to banks in Thailand, Vietnam, and Malaysia.
-        `,
+        company: 'Surge Mobile Access Inc.',
+        role: 'Full Stack Developer',
+        date: 'Oct 2025 – Present',
+        location: 'Pasig City',
+        type: 'work',
+        description: 'Developed a MERN-based React Native live streaming app integrated with LiveKit and DeepAR, featuring real-time socket-powered gifting and coin purchases. Built a MERN stack wallet and payment gateway integrated with QRPH and cryptocurrency wallet providers. Designed a WiFi captive portal system with Omada API for automated network authentication, and applied MultiChain for Distributed Ledger Technology (DLT) implementation.',
     },
     {
-        company: 'MDSCSI / TECH PRIME',
-        date: 'August 2023 - August 2024',
-        role: 'Fullstack Developer',
-        description: `
-            Translate UX wireframes to production-ready code. 
-            Develop APIs for frontend-backend communication. 
-            Integrate with backend and third-party APIs like Instapay, Pesonet. 
-            Write PHP server-side code in Laravel, CodeIgniter. 
-            Review, debug, and analyze user needs. 
-            Code applications based on client requirements. 
-            Design customizations for efficiency. 
-            Support applications by fixing bugs and flaws.
-        `,
+        company: 'Vértere Global Solutions, Inc.',
+        role: 'Full Stack Software Developer / Programmer Analyst III',
+        date: 'Feb 2025 – Sept 2025',
+        location: 'Makati City',
+        type: 'work',
+        description: 'Delivered 50% of MVP features for a self-service loan application portal (Vue, Tailwind, CodeIgniter API). Engineered a Banker\'s Rule (360-day interest) API microservice adopted across 4 channels. Implemented automated document generation (PN, DS, amortization) that eliminated 100% of manual processing for thousands of documents.',
     },
     {
-        company: 'The pinnacle.',
-        date: 'April 2023 - July 2024',
-        role: 'Fullstack Developer',
-        description: `
-            Design and develop both front-end and back-end website elements, 
-            including architecture, user interaction, database structures, 
-            Web Sockets configuration, endpoint definition, and 
-            cross-platform optimization, while collaborating with graphic 
-            designers for web design features.
-        `,
+        company: 'Freelance',
+        role: 'Full Stack Developer',
+        date: 'Sept 2024 – Jan 2025',
+        type: 'work',
+        description: 'Built a scalable casino platform covering admin and player operations with APIs and Seamless Wallet integration (Evo, Jili, SA Gaming, PG Soft). Implemented secure payment processing for deposits and withdrawals. Integrated third-party payment APIs (DragonPay, FuturePay, Sunny Page) across multiple platforms.',
     },
     {
-        company: 'Lucky8star Quest inc. - Alpahredph',
-        date: 'June 2020 - January 2024',
-        role: 'Fullstack Developer',
-        description: `
-            Design and develop both front-end and back-end website elements, 
-            including architecture, user interaction, database structures, 
-            Web Sockets configuration, endpoint definition, and 
-            cross-platform optimization, while collaborating with graphic 
-            designers for web design features.
-        `,
+        company: 'MDS Call Solutions Inc.',
+        role: 'Full Stack Developer',
+        date: 'Aug 2023 – Aug 2024',
+        location: 'Makati City',
+        type: 'work',
+        description: 'Delivered 100% of MVP features for a self-service Early Wage Access application built on Vue, Tailwind, and Laravel API. Developed and maintained secure, high-performance REST APIs for cross-system communication. Integrated UnionBank\'s i2i Open Finance platform to support compliant multi-institution fund transfers.',
     },
     {
-        company: '24/7 Intouch',
-        date: 'June 2019 - August 2018',
-        role: 'Technical Support Intern',
-        description: `
-            Provide level 1 Support, handle troubleshooting and
-            maintenance as well as monitoring and deployment of
-            IT equipment, escalate and update assigned tickets,
-            inventory of IT equipment and assisting on Build-Out
-            Project.
-        `,
+        company: 'Lucky8star Quest Inc.',
+        role: 'Full Stack Developer',
+        date: 'Oct 2020 – Jul 2023',
+        location: 'Mandaluyong',
+        type: 'work',
+        description: 'Engineered scalable front-end and back-end architectures, optimized database structures, and configured WebSockets for real-time updates across multiple production systems. Designed intuitive user flows collaborating with designers to deliver cross-platform experiences. Improved application performance and stability, contributing to higher user retention and smoother platform operations.',
     },
     {
-        company: 'Education',
-        date: '2016 - 2020',
-        role: 'Bachelor of Science Information Technology',
-        description: ``,
+        company: 'Systems Plus Computer College',
+        role: 'B.S. Information Technology',
+        date: '2016 – 2020',
+        location: 'Cubao',
+        type: 'education',
+        description: 'Built a strong foundation in software engineering, database systems, networking, and web technologies — the launchpad for a career in full-stack development.',
     },
 ];
 
+function renderExperience() {
+    var timeline = document.getElementById('timeline');
 
-function appendMoreDetails() {
-    let htmlStructure = '';
+    timeline.innerHTML = experienceData.map(function (item, i) {
+        var iconClass = item.type === 'education'
+            ? 'fa-solid fa-graduation-cap'
+            : 'fa-solid fa-briefcase';
 
-    experienceList.forEach(item=>{
-        htmlStructure += `
-        <li>
-          <div class="right_content">
-            <h3>${item.company}</h3>
-            <h4>${item.role}</h4>
-            <p>${item.description}</p>
-          </div>
-          <div class="left_content">
-            <h6>${item.date}</h6>
-          </div>
-        </li>
-      `;
-    });
+        var dotClass = item.type === 'education' ? ' timeline-dot--edu' : '';
 
-    htmlStructure += '<div style="clear:both;"></div>'; 
-    
-    // Append HTML structure to the parentList using jQuery
-    $("#parentList").html(htmlStructure);
+        return '<div class="timeline-item animate-on-scroll" style="--delay:' + (i * 100) + 'ms">'
+            + '<div class="timeline-dot' + dotClass + '">'
+            +   '<i class="' + iconClass + '"></i>'
+            + '</div>'
+            + '<div class="timeline-content">'
+            +   '<div class="timeline-meta">'
+            +     '<span class="timeline-date"><i class="fa-regular fa-calendar"></i> ' + item.date + '</span>'
+            +     '<span class="timeline-type-badge ' + item.type + '">' + (item.type === 'education' ? 'Education' : 'Work') + '</span>'
+            +   '</div>'
+            +   '<h3 class="timeline-company">' + item.company + '</h3>'
+            +   '<h4 class="timeline-role">' + item.role + '</h4>'
+            +   (item.description ? '<p class="timeline-desc">' + item.description + '</p>' : '')
+            + '</div>'
+            + '</div>';
+    }).join('');
+
+    initScrollAnimations();
 }
 
-appendMoreDetails();
+/* ============================================================
+   INIT
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', function () {
+    initTheme();
+    initMobileMenu();
+    initSmoothScroll();
+    initTypewriter();
+    initScrollAnimations();
+    initActiveNav();
+
+    renderSkills();
+    renderProjects();
+    renderExperience();
+
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+    document.getElementById('drawerBackdrop').addEventListener('click', closeDrawer);
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeDrawer();
+    });
+});
