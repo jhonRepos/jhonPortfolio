@@ -158,7 +158,7 @@ var skillsData = [
         icon: 'fa-solid fa-server',
         color: '#1b3a6b',
         category: 'Backend & APIs',
-        skills: ['PHP', 'Laravel', 'CodeIgniter', 'Python', 'REST APIs', 'Microservices', 'WebSockets', 'SOAP APIs'],
+        skills: ['PHP','Node.js','Express.js', 'Laravel', 'CodeIgniter', 'Python', 'REST APIs', 'Microservices', 'WebSockets', 'SOAP APIs'],
     },
     {
         icon: 'fa-solid fa-database',
@@ -170,7 +170,7 @@ var skillsData = [
         icon: 'fa-solid fa-wrench',
         color: '#059669',
         category: 'Tools & Platforms',
-        skills: ['Git', 'Jira', 'Figma', 'Postman', 'Draw.io', 'Slack', 'VS Code'],
+        skills: ['Git','Claude AI','Cursor', 'Jira', 'Figma', 'Postman', 'Draw.io', 'Slack', 'VS Code'],
     },
 ];
 
