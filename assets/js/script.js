@@ -492,7 +492,7 @@ function closeDrawer() {
 var experienceData = [
     {
         company: 'Surge Mobile Access Inc.',
-        role: 'Full Stack Developer',
+        role: 'Full Stack Developer - Supervisor',
         date: 'Oct 2025 – Present',
         location: 'Pasig City',
         type: 'work',
