@@ -170,7 +170,7 @@ var skillsData = [
         icon: 'fa-solid fa-wrench',
         color: '#059669',
         category: 'Tools & Platforms',
-        skills: ['Git','Claude AI','Cursor', 'Jira', 'Figma', 'Postman', 'Draw.io', 'Slack', 'VS Code'],
+        skills: ['Git','Claude AI','Cursor', 'Jira', 'Figma', 'Postman', 'Draw.io', 'Slack', 'VS Code', 'n8n', 'Gohighlevel', 'Omada API', 'MultiChain DLT'],
     },
 ];
 
